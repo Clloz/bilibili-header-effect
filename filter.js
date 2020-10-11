@@ -1,7 +1,7 @@
 /*
  * @Author: Clloz
  * @Date: 2020-10-10 13:41:21
- * @LastEditTime: 2020-10-11 13:21:37
+ * @LastEditTime: 2020-10-11 15:01:04
  * @LastEditors: Clloz
  * @Description:
  * @FilePath: /bilibili-header/filter.js
@@ -26,7 +26,7 @@ export class Effect {
                         img.src = `./images/${anime.path}/${index % anime.length}.png`;
                         index++;
                         if (index === anime.length + 1) clearInterval(blink);
-                    }, 50);
+                    }, 100);
                 }, 5000);
             }
         }
