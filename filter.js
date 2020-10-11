@@ -1,7 +1,7 @@
 /*
  * @Author: Clloz
  * @Date: 2020-10-10 13:41:21
- * @LastEditTime: 2020-10-11 15:01:04
+ * @LastEditTime: 2020-10-11 15:30:45
  * @LastEditors: Clloz
  * @Description:
  * @FilePath: /bilibili-header/filter.js
@@ -23,7 +23,9 @@ export class Effect {
                     let index = 0;
 
                     let blink = setInterval(() => {
-                        img.src = `./images/${anime.path}/${index % anime.length}.png`;
+                        img.src = `https://img.clloz.com/project/bilibili-header/${anime.path}/${
+                            index % anime.length
+                        }.png`;
                         index++;
                         if (index === anime.length + 1) clearInterval(blink);
                     }, 100);
