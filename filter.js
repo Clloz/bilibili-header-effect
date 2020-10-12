@@ -1,7 +1,7 @@
 /*
  * @Author: Clloz
  * @Date: 2020-10-10 13:41:21
- * @LastEditTime: 2020-10-11 15:53:59
+ * @LastEditTime: 2020-10-12 08:46:04
  * @LastEditors: Clloz
  * @Description:
  * @FilePath: /bilibili-header/filter.js
@@ -17,13 +17,22 @@ export class Effect {
     animation() {
         for (let anime of this.animes) {
             if (anime.path) {
-                let img = this.layers[anime.index].querySelector('img');
+                let imgArr = [];
+
+                let layer = this.layers[anime.index];
+                let img = layer.querySelector('img');
+                for (let i = 0; i < anime.length; i++) {
+                    let temp = img.cloneNode();
+                    temp.src = `./images/${anime.path}/${i % anime.length}.png`;
+                    imgArr.push(temp);
+                }
 
                 setInterval(() => {
                     let index = 0;
 
                     let blink = setInterval(() => {
-                        img.src = `./images/${anime.path}/${index % anime.length}.png`;
+                        // img.src = `./images/${anime.path}/${index % anime.length}.png`;
+                        layer.replaceChild(imgArr[index % anime.length], layer.querySelector('img'));
                         index++;
                         if (index === anime.length + 1) clearInterval(blink);
                     }, 100);
@@ -88,14 +97,6 @@ export class Effect {
         this.el.addEventListener('mouseover', mouseover);
     }
     init() {
-        const img1 = new Image();
-        const img2 = new Image();
-        const img3 = new Image();
-        const img4 = new Image();
-        img1.src = './images/spirit/0.png';
-        img2.src = './images/spirit/1.png';
-        img3.src = './images/spirit/2.png';
-        img4.src = './images/spirit/3.png';
         for (let anime of this.animes) {
             if (anime.styles) {
                 let img = this.layers[anime.index].querySelector('img');
